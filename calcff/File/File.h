@@ -11,7 +11,7 @@ public:
     File() = delete;
     explicit File(const std::string& filename);
     bool extractExpressions(ArithmeticExpr& expressions) const;
-    void writeToFile(const std::vector<std::string>& answers) const;
+    void writeToFile(const std::vector<double>& answers) const;
     void showResults() const;
 
 private:

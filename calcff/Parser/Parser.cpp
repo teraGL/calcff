@@ -1,5 +1,6 @@
 #include "Parser.h"
 #include <algorithm>
+#include <sstream>
 #include <iostream>
 #include <cctype>
 #include <Windows.h> // MessageBoxA
@@ -30,22 +31,26 @@ bool Parser::arePair(char opening, char closing) const
     return opening == '(' && closing == ')';
 }
 
-bool Parser::areParenthesisBalanced(const ArithmeticExpr& expressions) const
+bool Parser::areParenthesesBalanced(const ArithmeticExpr& expressions) const
 {
+    std::stack<char> st;
     for (const auto& expr : expressions) {
-        std::stack<char> st;
         for (const auto& e : expr) {
             if (e == '(') {
                 st.push(e);
             } else if (e == ')') {
-                if (st.empty() || !arePair(st.top(), e))
+                if (st.empty() || !arePair(st.top(), e)) {
+                    const std::string info_msg("Expression: '" + expr
+                                               + "'\nContain extra parentheses!");
+                    MessageBoxA(NULL, info_msg.c_str(), "Calcff", MB_ICONINFORMATION);
                     return false;
-                else
+                } else {
                     st.pop();
+                }
             }
         }
-        return st.empty();
     }
+    return true;//st.empty();
 }
 
 bool Parser::isOperator(const std::string& ch) const
@@ -62,6 +67,22 @@ int Parser::getPriority(const std::string& ch) const
     else if (ch == "+" || ch == "-")
         return 1;
     return 0;
+}
+
+std::vector<std::string> Parser::getVectorTokens(const std::string& str_tokens) const
+{
+    std::vector<std::string> vec_tokens;
+    vec_tokens.reserve(str_tokens.length());
+    std::istringstream iss(str_tokens);
+    while (iss) {
+        std::string temp;
+        iss >> temp;
+        vec_tokens.push_back(temp);
+    }
+
+    //for (const auto& t : str_tokens)
+    //    vec_tokens.push_back(std::string(1, t));
+    return vec_tokens;
 }
 
 std::string Parser::infixToPostfix(const std::string& expr) const

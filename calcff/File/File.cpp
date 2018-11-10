@@ -41,7 +41,7 @@ bool File::extractExpressions(ArithmeticExpr& expressions) const
     return true;
 }
 
-void File::writeToFile(const std::vector<std::string>& answers) const
+void File::writeToFile(const std::vector<double>& answers) const
 {
     std::ofstream outFile(answer_file_);
     int line = 1;
