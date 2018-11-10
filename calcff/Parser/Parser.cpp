@@ -79,9 +79,6 @@ std::vector<std::string> Parser::getVectorTokens(const std::string& str_tokens) 
         iss >> temp;
         vec_tokens.push_back(temp);
     }
-
-    //for (const auto& t : str_tokens)
-    //    vec_tokens.push_back(std::string(1, t));
     return vec_tokens;
 }
 
