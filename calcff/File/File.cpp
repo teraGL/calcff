@@ -34,8 +34,10 @@ bool File::extractExpressions(ArithmeticExpr& expressions) const
             expressions.push_back(std::move(line));
     }
 
-    if (expressions.empty())
+    if (expressions.empty()) {
         MessageBoxA(NULL, "File has no arithmetic expressions", "Calcff", MB_ICONINFORMATION);
+        return false;
+    }
 
     inFile.close();
     return true;
