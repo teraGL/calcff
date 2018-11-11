@@ -12,7 +12,7 @@ void Parser::removeWhitespaces(ArithmeticExpr& expr) const
         e.erase(std::remove_if(e.begin(), e.end(), std::isspace), e.end());
 }
 
-bool Parser::isValidCharacters(const ArithmeticExpr& expressions) const
+bool Parser::hasValidCharacters(const ArithmeticExpr& expressions) const
 {
     std::string parentheses;
     for (const auto& expr : expressions) {

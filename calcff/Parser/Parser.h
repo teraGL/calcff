@@ -15,7 +15,7 @@ public:
     std::string infixToPostfix(const std::string& expr) const;
 
 public:
-    bool isValidCharacters(const ArithmeticExpr& expressions) const;
+    bool hasValidCharacters(const ArithmeticExpr& expressions) const;
     bool arePair(char opening, char closing) const;
     bool areParenthesesBalanced(const ArithmeticExpr& expressions) const;
 

@@ -15,7 +15,7 @@ void Calculator::run() const
     }
 
     parser_.removeWhitespaces(expr);
-    if (!parser_.isValidCharacters(expr)) {
+    if (!parser_.hasValidCharacters(expr)) {
         exit(1);
     }
 
